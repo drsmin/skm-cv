@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v5.4.1, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.4.1, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo5.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+  
+  <title>포트폴리오</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="header12 cid-sMnrlnGmCT" id="header12-18">
+
+    
+
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card col-12 col-md-12 col-lg-9">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <h1 class="card-title mbr-fonts-style mb-3 display-1">
+                            <strong>송 강 민 </strong><br><strong>포트폴리오</strong></h1>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sMnrHv4GjM" id="features20-19">
+
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>사용자 행동 기록 성능 향상</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>문제 발생</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">시스템에 사용자가 몰릴 시 기대 했던 것 보다 시스템 부하가 심각하게 발생
+<div>테스트에서는 발견되지 않았지만 오픈 후 서비스가 몰릴 때 발생
+</div></h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>원인</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">사용자의 거래 기록을 전수로 DB에 기록하는 행위가 사용자가 급증 시 부하를 가중 시킴</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>해결</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">- 거래 기록의 Key 채번을 Lock-select 가 아닌 Sequence로 변경
+<div>- 사용자의 거래 기록을 Queue에 저장 그 후 일정 시간 마다 Batch Statement 처리를 이용하여 처리함.
+</div><div>- 일정 처리 시간안에 해당 기록을 처리하지 못하면 유동적으로 처리 Thread를 늘려 다중으로 처리함
+</div><div>- 거래 기록을 RAW데이터가 아닌 매핑 처리 하여 전체적인 데이터 처리량을 줄임</div></h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sMnrToPaOC" id="features20-1b">
+
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>대외 연계 성능 향상</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>문제 발생</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">은행연합회 대외 처리가 너무 느림
+<div>단순 처리에는 문제가 없었지만 일마감 작업등에 담당자가 고통을 호소</div></h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>원인</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">은행 연합회와의 통신 방식이 모두 동기화 식으로 건 by 건 동기식으로 처리 됨</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>해결
+</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">- Netty 라이브러리를 통해 비동기 방식으로 변경
+<div>- 인터페이스 원장 처리 Batch Statement로 변경</div></h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sMns6QsOha" id="features20-1c">
+
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>Nexacro 화면 렌더링 속도 저하</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>문제 발생</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">기존 X-Platform에서 사용하던 화면이 Nexacro로 변환 하였더니 속도가 매우 느려짐
+<div>기존 1초 -&gt; 2분으로 도저히 정상 사용이 불가능 함</div></h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>원인</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Grid 의 렌더링 방식이 row / column이 생성 될 때마다 모든 처리를 반복함 (렌더링 및 이벤트 리스너 까지 재 계산)</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>해결
+</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">- Grid의 모든 속성 및 이벤트를 Object로 저장
+<div>- Grid 렌더링
+</div><div>- 렌더링 이후 원래 속성 및 이벤트를 일괄 적용
+</div><div>- 위의 과정을 공통화 하여 적용
+</div></h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sMnsk4zLqW" id="features20-1d">
+
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>Java 시스템 OOM</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>문제 발생</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">시스템에서 간헐적인 Out Of Memory 에러가 발생</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>원인</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">어플리케이션에서 다량의 데이터를 한번에 Select 하여 가져옴</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>해결
+</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">- Java Memory Analyzer 를 이용해 dump 파일을 분석
+<div>- 특정 List객체에 1.7G의 데이터가 메모리에 할당된 것을 찾음
+</div><div>- 해당 기능은 Mybatis 의 rowHandler를 이용하여 일정 데이터 이상이면 화면으로 보내고 화면에서는 해당 데이터를 append 형식으로 표<span style="color: rgb(17, 17, 17); font-size: 1.1rem;">현</span></div><div>- 위의 기능을 표준화 하여 프로젝트 팀에 가이드</div></h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sMnswpSL6q" id="features20-1e">
+
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>대량의 센서 데이터 처리</strong></h4>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>문제 발생</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">초당 3,000건 이상의 IoT센서의 데이터를 분석하는데 시간이 흐를수록 DB 적재 처리가 밀려서 처리가 실시간이 되지 않는 경우가 생김</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>원인</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">DB의 처리 능력이 초당 3,000건 이상을 처리하지 못함</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7">
+                            <strong>해결
+</strong>
+                        </h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">- 최초의 로우 데이터 기록을 In Memory H2 DB에 기록함
+<div>- In Memory 데이터 중 무의미한 데이터 버림
+</div><div>- 유의미한 데이터만을 가지고 분석 처리
+</div><div>- 유의미한 데이터 및 분석 결과를 실제 DB에 적재</div></h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content10 cid-sMnsSjQzYF" id="content10-1f">
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md">
+                
+                <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-5">서버 모니터링
+<div>시스템 개발</div></h6>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <p class="mbr-text mbr-fonts-style display-7">Server, Agent, Web UI 로 이루어진 서버 모니터링 시스템 개발<br><br>Agent에서 서버의 상태를 수집하여 Server로 전송하고 설정에 따라
+<br>알림등을 전송하는 시스템을 개발<br>
+<br>특이 사항으로는 Agent에서 각 모니터링 명령어를 Wrapping하여
+<br>Windows 및 Linux 에서 동일한 Class로 데이터를 수집하여 사용</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content10 cid-sMnt38unAN" id="content10-1g">
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md">
+                
+                <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-5">작업 스케쥴러
+<div>개발</div></h6>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <p class="mbr-text mbr-fonts-style display-7">Server, Agent, Web UI 로 이루어진 작업 스케쥴러 개발<br>
+<br>Quartz 와 Spring으로 HA구성이 가능한 스케쥴러 서버와 에이전트 개발<br>
+<br>에이전트에서 실제 스케쥴러에 구현된 Job을 실행함. 해당 프로세스
+<br>를 감싸는 Wrapper Unit을 통해 작업을 제어 / 감시함<br>
+<br>현재 Spring cloud와 결합하여 Eureka 를 결합한 버전도 개발 <br><br>UI는 프론트 엔드에 능숙한 팀원과 협업하여 개발</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content10 cid-sMntabLowK" id="content10-1h">
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md">
+                
+                <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-5">봇 개발</h6>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <p class="mbr-text mbr-fonts-style display-7">각종 봇 개발<br><br>처음에 취미인 게임을 위해 Telegram(Java) 및 Discord 봇(Java) 개발 시작<br><br>현재는 추가로 카카오톡 봇(JS), 스카이프 봇(Java) 등 개발<br><br>주요 기능으로는 시스템 메세지를 각종 메신저로 알림, 서버 재기동, 빌드 명령 등으로 사용<br>그외 스크래핑등을 이용한 날씨 정보, 주식 정보, 알림등의 많은 분야에 사용가능</p>
+            </div>
+        </div>
+    </div>
+</section><section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;"><a href="https://mobirise.site/x" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;"></p></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
+  
+</body>
+</html>
