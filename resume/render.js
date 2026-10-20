@@ -1,4 +1,5 @@
 // resume/data.json 을 읽어 이력서를 그린다. 형식은 docs/resume-design.md 참고.
+// 배치는 Jake's Resume(개발자 이력서 LaTeX 템플릿)를 따른다 — 한 단, 가로줄 절 제목, 굵은 제목 + 오른쪽 날짜.
 (function () {
   'use strict';
 
@@ -38,89 +39,59 @@
     return (y ? y + '년' : '') + (y && m ? ' ' : '') + (m ? m + '개월' : '');
   }
 
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-
-  // 머리말: 영문 부제 + 영문 이름 위 작은 글씨 + 한글 제목
-  function section(title, en, body, cls) {
-    return el('section', { class: 'sec' + (cls ? ' ' + cls : '') }, [
-      el('header', { class: 'sec-head' }, [el('span', { class: 'eyebrow', text: en }), el('h2', { text: title })]),
-      el('div', { class: 'sec-body' }, body)
-    ]);
+  function section(title, body, cls) {
+    return el('section', { class: 'sec' + (cls ? ' ' + cls : '') }, [el('h2', { text: title }), el('div', { class: 'sec-body' }, body)]);
   }
 
-  // 프로젝트에 가장 많이 쓴 기술 n 개
-  function topTech(projects, n) {
-    var count = {};
-    projects.forEach(function (p) { (p.tech || []).forEach(function (t) { count[t] = (count[t] || 0) + 1; }); });
-    return Object.keys(count).sort(function (a, b) { return count[b] - count[a]; }).slice(0, n);
+  // 항목 머리 두 줄: [굵은 제목 | 기울임 부가] ··· [오른쪽 날짜], [기울임 왼쪽] ··· [기울임 오른쪽]
+  function entryHead(title, extra, right, sub, subRight) {
+    return [
+      el('div', { class: 'row' }, [
+        el('h3', {}, [title, extra ? el('span', { class: 'extra' }, [el('span', { class: 'bar', text: '|' }), el('em', { text: extra })]) : null]),
+        right ? el('span', { class: 'date', text: right }) : null
+      ]),
+      sub || subRight ? el('div', { class: 'row sub' }, [el('em', { text: sub || '' }), subRight ? el('em', { text: subRight }) : null]) : null
+    ];
   }
 
-  function profile(p, d) {
+  function profile(p) {
     var c = p.contact || {};
-    var projects = d.projects || [];
-    var contacts = [];
-    if (c.email) contacts.push(el('li', {}, [el('span', { class: 'k', text: 'Email' }), el('a', { href: 'mailto:' + c.email, text: c.email })]));
+    var items = [];
+    if (p.nameEn) items.push(el('span', { text: p.nameEn }));
+    if (c.email) items.push(el('a', { href: 'mailto:' + c.email, text: c.email }));
     if (c.phone) {
       // 가린 번호(010-****-…)는 전화 링크를 만들지 않는다 (D-008)
-      var phone = /\*/.test(c.phone) ? el('span', { text: c.phone }) : el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone });
-      contacts.push(el('li', {}, [el('span', { class: 'k', text: 'Phone' }), phone]));
+      items.push(/\*/.test(c.phone) ? el('span', { text: c.phone }) : el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone }));
     }
-
-    // 요약 지표는 data.json 에서 계산한다 — 따로 적어 둘 필요 없음
-    var starts = projects.map(function (x) { return x.start; }).filter(Boolean).sort();
-    var stats = [];
-    if (starts.length) stats.push([Math.floor((months(null) - months(starts[0]) + 1) / 12) + '년+', '경력']);
-    if (projects.length) stats.push([String(projects.length), '프로젝트']);
-    if (d.skills && d.skills.length) stats.push([String(d.skills.length), '핵심 기술']);
-
-    var tech = topTech(projects, 6);
-    return el('header', { class: 'profile' }, [
-      el('div', { class: 'hero-main' }, [
-        p.nameEn ? el('p', { class: 'name-en', text: p.nameEn }) : null,
-        el('h1', { text: p.name }),
-        p.headline ? el('p', { class: 'headline', text: p.headline }) : null,
-        tech.length ? list('ul', 'top-tech', tech) : null
-      ]),
-      el('div', { class: 'hero-side' }, [
-        contacts.length ? el('ul', { class: 'contact' }, contacts) : null,
-        stats.length ? el('dl', { class: 'stats' }, stats.map(function (s) {
-          return el('div', {}, [el('dt', { text: s[1] }), el('dd', { text: s[0] })]);
-        })) : null
-      ])
-    ]);
+    var line = [];
+    items.forEach(function (n, i) { if (i) line.push(el('span', { class: 'sep', text: '|' })); line.push(n); });
+    return el('header', { class: 'profile' }, [el('h1', { text: p.name }), el('p', { class: 'contact' }, line)]);
   }
 
   function project(pr) {
-    return el('li', { class: 'tl-item' + (pr.end ? '' : ' current') }, [
-      el('div', { class: 'tl-when' }, [
-        el('span', { class: 'period', text: ym(pr.start) + ' – ' + ym(pr.end) }),
-        el('span', { class: 'dur', text: pr.end ? duration(pr.start, pr.end) : '진행 중' })
-      ]),
-      el('div', { class: 'tl-body' }, [
-        el('h3', {}, [pr.title, pr.type ? el('span', { class: 'badge', text: pr.type }) : null]),
-        pr.summary ? el('p', { class: 'summary', text: pr.summary }) : null,
-        pr.role ? el('p', { class: 'role' }, [el('span', { class: 'k', text: '역할' }), pr.role]) : null,
-        pr.tech && pr.tech.length ? list('ul', 'chips', pr.tech) : null
-      ])
-    ]);
+    var bullets = [];
+    if (pr.summary) bullets.push(el('li', { text: pr.summary }));
+    if (pr.role) bullets.push(el('li', {}, [el('b', { text: '역할: ' }), pr.role]));
+    return el('article', { class: 'entry' + (pr.end ? '' : ' current') }, entryHead(
+      pr.title,
+      pr.type || '',
+      ym(pr.start) + ' – ' + ym(pr.end),
+      pr.tech && pr.tech.length ? pr.tech.join(', ') : '',
+      pr.end ? duration(pr.start, pr.end) : '진행 중'
+    ).concat([bullets.length ? el('ul', { class: 'items' }, bullets) : null]));
   }
 
   function troubleshooting(c, i) {
-    var rows = [['problem', '문제', c.problem], ['cause', '원인', c.cause], ['solution', '해결', c.solution]];
-    return el('article', { class: 'case' }, [
-      el('h3', {}, [el('span', { class: 'num', text: pad(i + 1) }), c.title]),
-      el('div', { class: 'steps' }, rows.filter(function (r) { return r[2] && r[2].length; }).map(function (r) {
-        return el('div', { class: 'step ' + r[0] }, [el('span', { class: 'step-k', text: r[1] }), list('ul', '', r[2])]);
+    var rows = [['문제', c.problem], ['원인', c.cause], ['해결', c.solution]];
+    return el('article', { class: 'entry' }, entryHead((i + 1) + '. ' + c.title).concat([
+      el('ul', { class: 'items' }, rows.filter(function (r) { return r[1] && r[1].length; }).map(function (r) {
+        return el('li', {}, [el('b', { text: r[0] }), list('ul', 'sub-items', r[1])]);
       }))
-    ]);
+    ]));
   }
 
   function work(w) {
-    return el('article', { class: 'work' }, [
-      el('h3', { text: w.title }),
-      w.type ? el('p', { class: 'work-type', text: w.type }) : null,
-      list('ul', 'desc', w.description || [])
-    ]);
+    return el('article', { class: 'entry' }, entryHead(w.title, w.type || '').concat([list('ul', 'items', w.description || [])]));
   }
 
   function render(d) {
@@ -131,15 +102,15 @@
     document.title = (p.name || '') + '_이력서'; // PDF 로 저장할 때 기본 파일 이름이 된다
     app.textContent = '';
     [
-      profile(p, d),
-      p.intro && p.intro.length ? section('소개', 'About', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
-      d.skills && d.skills.length ? section('보유 기술', 'Skills', [el('div', { class: 'skills' }, d.skills.map(function (s) {
-        return el('div', { class: 'skill' }, [el('h3', { text: s.name }), s.description ? el('p', { text: s.description }) : null]);
+      profile(p),
+      p.intro && p.intro.length ? section('소개', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
+      d.skills && d.skills.length ? section('보유 기술', [el('ul', { class: 'skills' }, d.skills.map(function (s) {
+        return el('li', {}, [el('b', { text: s.name }), s.description ? ': ' + s.description : '']);
       }))]) : null,
-      d.goals && d.goals.length ? section('목표 및 포부', 'Goals', [list('ol', 'goals', d.goals)]) : null,
-      d.projects && d.projects.length ? section('프로젝트 이력', 'Experience', [el('ol', { class: 'timeline' }, d.projects.map(project))]) : null,
-      hasCases ? section('문제 해결 사례', 'Problem Solving', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
-      pf.works && pf.works.length ? section('개인 개발', 'Side Projects', [el('div', { class: 'works' }, pf.works.map(work))], 'portfolio' + (hasCases ? '' : ' portfolio-start')) : null,
+      d.projects && d.projects.length ? section('프로젝트 이력', d.projects.map(project)) : null,
+      d.goals && d.goals.length ? section('목표 및 포부', [list('ul', 'items', d.goals)]) : null,
+      hasCases ? section('문제 해결 사례', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
+      pf.works && pf.works.length ? section('개인 개발', pf.works.map(work), 'portfolio' + (hasCases ? '' : ' portfolio-start')) : null,
       d.updated ? el('footer', { text: '최종 수정 ' + d.updated }) : null
     ].forEach(function (n) { if (n) app.appendChild(n); });
   }

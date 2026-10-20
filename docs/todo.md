@@ -11,7 +11,7 @@
 - [ ] 실제 토큰으로 편집 페이지 저장 한 번 확인
 - [x] 디자인 개편 · 인쇄/PDF 최적화 · Pretendard (D-006)
 - [x] PDF 자동 생성 — Actions + headless Chrome (D-007)
-- [x] 보기 페이지 디자인 다듬기 — 머리 띠·타임라인·카드 (PR)
+- [x] 보기 페이지 디자인 — Jake's Resume 형식 (PR #4)
 - [ ] 머지 후 Actions 가 PDF 를 다시 만들고 Pages 에 반영되는지 확인
 - [ ] 폰트 최종 선택 확인 (후보: Pretendard · 고딕+명조 · IBM Plex Sans KR)
 
