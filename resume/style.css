@@ -36,8 +36,8 @@ body {
   background: var(--desk);
   color: var(--text);
   font-family: var(--font);
-  font-size: 14.5px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.75;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
@@ -50,7 +50,7 @@ a { color: inherit; }
   max-width: 100%;
   min-height: 297mm;
   margin: 20px auto 56px;
-  padding: 14mm 15mm;
+  padding: 18mm 18mm;
   background: var(--paper);
   box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 8px 28px rgba(0,0,0,.08);
 }
@@ -85,49 +85,50 @@ a { color: inherit; }
 .toolbar label { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); cursor: pointer; }
 
 /* ── 머리: 가운데 이름 + 한 줄 연락처 */
-header.profile { text-align: center; margin-bottom: 6px; }
-header.profile h1 { margin: 0; font-size: 2.15rem; font-weight: 700; line-height: 1.2; letter-spacing: 0.06em; }
-.contact { margin: 4px 0 0; font-size: .9rem; font-variant-numeric: tabular-nums; }
+header.profile { text-align: center; margin-bottom: 12px; }
+header.profile h1 { margin: 0; font-size: 2.15em; font-weight: 700; line-height: 1.2; letter-spacing: 0.06em; }
+.contact { margin: 8px 0 0; font-size: .9em; font-variant-numeric: tabular-nums; }
 .contact a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .contact .sep { margin: 0 .6em; color: var(--muted); }
 
 /* ── 절: 제목 + 아래 가로줄 */
-.sec { margin-top: 14px; }
+.sec { margin-top: 32px; }
 .sec h2 {
-  margin: 0 0 6px;
-  padding-bottom: 2px;
+  margin: 0 0 14px;
+  padding-bottom: 5px;
   border-bottom: 1px solid var(--rule);
-  font-size: 1.15rem;
+  font-size: 1.15em;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
-.intro p { margin: 0 0 5px; font-size: .95rem; }
+.intro p { margin: 0 0 12px; }
 
-.skills { margin: 0; padding: 0 0 0 2px; list-style: none; font-size: .93rem; }
-.skills li { margin-bottom: 1px; }
+.skills { margin: 0; padding: 0 0 0 2px; list-style: none; }
+.skills li { margin-bottom: 6px; }
 
 /* ── 항목: 굵은 제목 | 기울임 부가 ··· 날짜 / 기울임 둘째 줄 / 글머리표 */
-.entry { margin: 0 0 9px; padding-left: 2px; }
+.entry { margin: 0 0 22px; padding-left: 2px; }
+.entry:last-child { margin-bottom: 0; }
 .row { display: flex; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
-.row h3 { margin: 0; font-size: 1rem; font-weight: 700; min-width: 0; }
-.row .extra { font-weight: 400; font-size: .86rem; }
+.row h3 { margin: 0; font-size: 1em; font-weight: 700; min-width: 0; }
+.row .extra { font-weight: 400; font-size: .86em; }
 .row .bar { margin: 0 .5em; color: var(--muted); }
-.row .date { flex: none; font-size: .9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.row.sub { font-size: .88rem; }
+.row .date { flex: none; font-size: .9em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.row.sub { margin-top: 2px; font-size: .88em; }
 .row.sub em:last-child:not(:first-child) { flex: none; white-space: nowrap; }
 /* Pretendard 에는 이탤릭이 없어 한글이 기울어지면 어색하다 — 원본의 기울임은 회색으로 대신한다 */
 em { font-style: normal; color: var(--muted); }
 
-ul.items { margin: 3px 0 0; padding-left: 1.35em; font-size: .92rem; }
-ul.items > li { margin-bottom: 1px; }
+ul.items { margin: 8px 0 0; padding-left: 1.35em; }
+ul.items > li { margin-bottom: 4px; }
 ul.items > li::marker { font-size: .8em; }
-ul.sub-items { margin: 0 0 2px; padding-left: 1.2em; list-style: circle; }
+ul.sub-items { margin: 0 0 6px; padding-left: 1.2em; list-style: circle; }
 ul.items > li > b { font-weight: 600; }
 /* 문제·원인·해결: 라벨을 왼쪽 칸에 (Jake's 의 "Languages:" 줄처럼) */
 ul.items > li:has(> ul.sub-items) { display: grid; grid-template-columns: 2.6em 1fr; margin-left: -1.1em; }
 
-footer { margin-top: 18px; color: var(--muted); font-size: .76rem; text-align: right; }
+footer { margin-top: 18px; color: var(--muted); font-size: .76em; text-align: right; }
 
 /* 포트폴리오 끄기 (도구 막대) */
 body.no-portfolio .portfolio { display: none; }
@@ -135,29 +136,34 @@ body.no-portfolio .portfolio { display: none; }
 /* ── 좁은 화면: 날짜를 제목 아래로 */
 @media screen and (max-width: 720px) {
   .page { width: auto; min-height: 0; margin: 0; padding: 24px 16px 32px; box-shadow: none; }
-  header.profile h1 { font-size: 1.9rem; }
+  header.profile h1 { font-size: 1.9em; }
   .contact .sep { margin: 0 .35em; }
   .row { flex-direction: column; gap: 0; }
-  .row .date { color: var(--muted); font-size: .85rem; }
+  .row .date { color: var(--muted); font-size: .85em; }
 }
 
 /* ── 인쇄 · PDF (A4) */
 @page {
   size: A4;
-  margin: 12mm 13mm 13mm;
+  margin: 16mm 17mm 16mm;
   @bottom-right { content: counter(page) " / " counter(pages); font-family: var(--font); font-size: 7.5pt; color: #777; }
 }
 @media print {
   :root { --paper: #fff; --text: #000; --muted: #444; --line: #ccc; --rule: #000; }
   html, body { background: #fff; }
-  body { font-size: 9.6pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10pt; line-height: 1.7; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .toolbar, footer { display: none !important; }
   .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
   header.profile h1 { font-size: 22pt; }
   a { text-decoration: none; }
-  .sec { margin-top: 10pt; }
+  .sec { margin-top: 20pt; }
+  .sec h2 { margin-bottom: 9pt; }
   .sec h2 { break-after: avoid; font-size: 12pt; }
-  .entry { margin-bottom: 6pt; break-inside: avoid; }
+  .entry { margin-bottom: 13pt; break-inside: avoid; }
+  .intro p { margin-bottom: 7pt; }
+  .skills li { margin-bottom: 3pt; }
+  ul.items { margin-top: 5pt; }
+  ul.items > li { margin-bottom: 2pt; }
   .skills li, .items > li { break-inside: avoid; }
   /* 이력서와 포트폴리오를 나눈다 — 포트폴리오는 새 쪽에서 시작 */
   .sec.portfolio-start { break-before: page; margin-top: 0; }
