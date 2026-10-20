@@ -86,6 +86,7 @@
     p.contact = p.contact || {};
     data.skills = data.skills || [];
     data.goals = data.goals || [];
+    data.certifications = data.certifications || [];
     data.projects = data.projects || [];
     var pf = data.portfolio = data.portfolio || {};
     pf.troubleshooting = pf.troubleshooting || [];
@@ -97,11 +98,17 @@
       section('프로필', [
         el('div', { class: 'row' }, [field('이름', 'text', p, 'name', 'half'), field('영문 이름', 'text', p, 'nameEn', 'half')]),
         el('div', { class: 'row' }, [field('이메일 (여러 개는 쉼표로)', 'text', p.contact, 'email', 'half'), field('전화', 'text', p.contact, 'phone', 'half')]),
+        field('GitHub 주소', 'text', p.contact, 'github'),
+        field('요약 (한 줄에 하나, 첫 줄이 굵게)', 'lines', p, 'summary'),
         field('소개 (빈 줄로 문단 구분)', 'paras', p, 'intro')
       ]),
       section('보유 기술 / 플랫폼', [listEditor(data.skills, function (s) {
-        return [field('이름', 'text', s, 'name'), field('설명', 'area', s, 'description')];
-      }, function () { return { name: '', description: '' }; }, '기술')]),
+        return [
+          el('div', { class: 'row' }, [field('이름', 'text', s, 'name', 'grow'), field('분야 (같은 분야끼리 한 줄)', 'text', s, 'group', 'month')]),
+          field('설명', 'area', s, 'description')
+        ];
+      }, function () { return { name: '', group: '', description: '' }; }, '기술')]),
+      section('자격', [field('자격증 (한 줄에 하나)', 'lines', data, 'certifications')]),
       section('목표 및 포부', [listEditor(data.goals, function (g, i) {
         return [field('내용', 'area', data.goals, i)];
       }, function () { return ''; }, '목표')]),
@@ -116,12 +123,13 @@
       }, function () { return { title: '', type: '', start: null, end: null, summary: '', role: '', tech: [] }; }, '프로젝트')]),
       section('문제 해결 사례', [listEditor(pf.troubleshooting, function (c) {
         return [
-          field('제목', 'text', c, 'title'),
+          el('div', { class: 'row' }, [field('제목', 'text', c, 'title', 'grow'), field('어느 프로젝트에서', 'text', c, 'project', 'half')]),
           field('문제 (한 줄에 하나)', 'lines', c, 'problem'),
           field('원인 (한 줄에 하나)', 'lines', c, 'cause'),
-          field('해결 (한 줄에 하나)', 'lines', c, 'solution')
+          field('해결 (한 줄에 하나)', 'lines', c, 'solution'),
+          field('결과 (한 줄에 하나, 숫자로)', 'lines', c, 'result')
         ];
-      }, function () { return { title: '', problem: [], cause: [], solution: [] }; }, '사례')]),
+      }, function () { return { title: '', problem: [], cause: [], solution: [], result: [] }; }, '사례')]),
       section('개인 개발', [listEditor(pf.works, function (w) {
         return [
           el('div', { class: 'row' }, [field('제목', 'text', w, 'title', 'grow'), field('구분', 'text', w, 'type', 'month')]),
