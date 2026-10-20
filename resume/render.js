@@ -81,6 +81,28 @@
     ).concat([bullets.length ? el('ul', { class: 'items' }, bullets) : null]));
   }
 
+  // 오래된 프로젝트는 한 줄로 — 끝난 지 OLD_YEARS 년이 넘으면 「이전 프로젝트」 목록에 제목·기술·기간만
+  var OLD_YEARS = 12;
+  function isOld(pr) { return pr.end && months(null) - months(pr.end) >= OLD_YEARS * 12; }
+
+  function compact(prs) {
+    return el('div', { class: 'older' }, [
+      el('h3', { class: 'older-title', text: '이전 프로젝트' }),
+      el('ul', { class: 'compact' }, prs.map(function (pr) {
+        return el('li', { class: 'row' }, [
+          el('span', {}, [el('b', { text: pr.title }), pr.tech && pr.tech.length ? el('em', { text: ' · ' + pr.tech.join(', ') }) : null]),
+          el('span', { class: 'date', text: ym(pr.start) + ' – ' + ym(pr.end) })
+        ]);
+      }))
+    ]);
+  }
+
+  function projects(prs) {
+    var recent = prs.filter(function (pr) { return !isOld(pr); });
+    var old = prs.filter(isOld);
+    return recent.map(project).concat(old.length ? [compact(old)] : []);
+  }
+
   function troubleshooting(c, i) {
     var rows = [['문제', c.problem], ['원인', c.cause], ['해결', c.solution]];
     return el('article', { class: 'entry' }, entryHead((i + 1) + '. ' + c.title).concat([
@@ -107,7 +129,7 @@
       d.skills && d.skills.length ? section('보유 기술', [el('ul', { class: 'skills' }, d.skills.map(function (s) {
         return el('li', {}, [el('b', { text: s.name }), s.description ? ': ' + s.description : '']);
       }))]) : null,
-      d.projects && d.projects.length ? section('프로젝트 이력', d.projects.map(project)) : null,
+      d.projects && d.projects.length ? section('프로젝트 이력', projects(d.projects)) : null,
       d.goals && d.goals.length ? section('목표 및 포부', [list('ul', 'items', d.goals)]) : null,
       hasCases ? section('문제 해결 사례', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
       pf.works && pf.works.length ? section('개인 개발', pf.works.map(work), 'portfolio' + (hasCases ? '' : ' portfolio-start')) : null,

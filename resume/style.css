@@ -128,6 +128,14 @@ ul.items > li > b { font-weight: 600; }
 /* 문제·원인·해결: 라벨을 왼쪽 칸에 (Jake's 의 "Languages:" 줄처럼) */
 ul.items > li:has(> ul.sub-items) { display: grid; grid-template-columns: 2.6em 1fr; margin-left: -1.1em; }
 
+/* 이전 프로젝트 — 한 줄씩 */
+.older { margin-top: 26px; }
+.older-title { margin: 0 0 8px; font-size: 1em; font-weight: 700; }
+ul.compact { margin: 0; padding: 0; list-style: none; }
+ul.compact li { padding: 3px 0; border-bottom: 1px solid var(--line); font-size: .92em; }
+ul.compact li:last-child { border-bottom: 0; }
+ul.compact b { font-weight: 600; }
+
 footer { margin-top: 18px; color: var(--muted); font-size: .76em; text-align: right; }
 
 /* 포트폴리오 끄기 (도구 막대) */
@@ -165,6 +173,8 @@ body.no-portfolio .portfolio { display: none; }
   ul.items { margin-top: 5pt; }
   ul.items > li { margin-bottom: 2pt; }
   .skills li, .items > li { break-inside: avoid; }
+  .older { margin-top: 14pt; }
+  ul.compact li { padding: 1.5pt 0; break-inside: avoid; }
   /* 이력서와 포트폴리오를 나눈다 — 포트폴리오는 새 쪽에서 시작 */
   .sec.portfolio-start { break-before: page; margin-top: 0; }
 }
