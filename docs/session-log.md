@@ -5,6 +5,12 @@
 
 ---
 
+## 2026-10-20 (04) — 이력서 편집 페이지
+
+**요청.** 편집 결과를 GitHub 에 바로 저장, 토큰은 어디에도 저장하지 않기(gh 는 브라우저에서 불가).
+**작업.** `resume/edit.html`·`edit.js`·`edit.css` — 폼 편집·순서 변경·추가·삭제, Contents API PUT, 원격 변경 시 확인창, JSON 내려받기, CSP. D-005.
+Playwright 로 API 를 가로채 확인: 무수정 왕복 동일·수정 반영·401 메시지·storage 0·가로 넘침 없음.
+
 ## 2026-10-20 (03) — 이력서 보기 페이지
 
 **작업.** `resume/index.html` + `render.js`·`style.css` — `data.json` 을 그린다. 바닐라 JS, 다크 모드·모바일·인쇄(A4) 대응.
