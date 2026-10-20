@@ -6,7 +6,7 @@
 ## ★ Phase 1. 이력서 관리 페이지 — **현재 Phase**
 - [x] 구조·데이터 형식 정하기 (D-004, `docs/resume-design.md`)
 - [x] 원본 내용을 `resume/data.json` 으로 옮기기
-- [ ] 보기 페이지 `resume/index.html`
+- [x] 보기 페이지 `resume/index.html` (+ `render.js`·`style.css`, 다크·모바일·인쇄)
 - [ ] 편집 페이지 `resume/edit.html`
 
 ## Phase 0. 기반
