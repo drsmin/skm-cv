@@ -7,7 +7,8 @@
 - [x] 구조·데이터 형식 정하기 (D-004, `docs/resume-design.md`)
 - [x] 원본 내용을 `resume/data.json` 으로 옮기기
 - [x] 보기 페이지 `resume/index.html` (+ `render.js`·`style.css`, 다크·모바일·인쇄)
-- [ ] 편집 페이지 `resume/edit.html`
+- [x] 편집 페이지 `resume/edit.html` — GitHub 바로 저장 (D-005)
+- [ ] PR 머지 후 실제 토큰으로 저장 한 번 확인
 
 ## Phase 0. 기반
 - [x] 문서 구조 생성 (current-task / session-log / decisions / todo / recovery / context-budget)

@@ -11,7 +11,7 @@
 | --- | --- |
 | `resume/data.json` | 이력서 내용 전부 (아래 스키마). 원본 두 페이지에서 옮겨 왔다 |
 | `resume/index.html` | 보기 페이지 — `render.js`·`style.css` 로 `data.json` 을 그린다 |
-| `resume/edit.html` | 편집 페이지 — 항목 추가·수정·삭제·순서 변경 후 JSON 으로 내보낸다 (만들 예정) |
+| `resume/edit.html` | 편집 페이지(`edit.js`·`edit.css`) — 항목 추가·수정·삭제·순서 변경 후 GitHub 에 바로 커밋(D-005) 또는 JSON 내려받기 |
 
 정적 사이트(GitHub Pages)라 빌드 단계·서버가 없다. 외부 라이브러리 없이 HTML·CSS·바닐라 JS 로 만든다.
 공개 주소는 `https://cv.drs.pe.kr/resume/` 가 된다.

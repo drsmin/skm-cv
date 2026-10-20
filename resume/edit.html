@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 외부 스크립트를 막고, 네트워크는 이 사이트와 GitHub API 로만 나가게 한다 (토큰 보호) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; form-action 'none'; base-uri 'none'">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>이력서 편집</title>
+  <link rel="shortcut icon" href="../assets/images/logo5.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+  <div class="page editor">
+    <header class="bar">
+      <h1>이력서 편집</h1>
+      <a href="./" target="_blank" rel="noopener">보기 페이지 열기</a>
+    </header>
+
+    <section class="save-box">
+      <h2>GitHub 에 저장</h2>
+      <label class="field">
+        <span>GitHub 토큰</span>
+        <input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+      </label>
+      <p class="hint">토큰은 이 페이지의 메모리에만 있고 어디에도 저장되지 않습니다. 새로고침하거나 창을 닫으면 사라집니다.
+        <code>drsmin/skm-cv</code> 저장소의 <b>Contents: Read and write</b> 권한만 준 fine-grained 토큰을 쓰세요.</p>
+      <div class="row">
+        <label class="field grow"><span>커밋 메시지</span><input id="message" type="text" value="이력서 수정"></label>
+        <label class="field"><span>브랜치</span><input id="branch" type="text" value="master" spellcheck="false"></label>
+      </div>
+      <div class="row">
+        <button id="save" type="button" class="primary">GitHub 에 저장</button>
+        <button id="download" type="button">JSON 내려받기</button>
+        <span id="status" class="status" role="status"></span>
+      </div>
+    </section>
+
+    <div id="form"><p class="muted">불러오는 중…</p></div>
+  </div>
+  <script src="edit.js"></script>
+</body>
+</html>
