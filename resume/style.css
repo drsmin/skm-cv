@@ -80,7 +80,7 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
-.toolbar a.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
+.toolbar .ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
 .toolbar label { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); cursor: pointer; }
 
 /* ── 머리 */

@@ -83,10 +83,17 @@
     ].forEach(function (n) { if (n) app.appendChild(n); });
   }
 
-  // 도구 막대: 인쇄(브라우저의 「PDF로 저장」), 포트폴리오 포함 여부
+  // 도구 막대: PDF 다운로드(서버에서 미리 만든 파일 — scripts/build-pdf.mjs), 인쇄, 포트폴리오 포함 여부
   var toggle = document.getElementById('with-portfolio');
+  var pdf = document.getElementById('pdf');
   if (toggle) {
-    toggle.addEventListener('change', function () { document.body.classList.toggle('no-portfolio', !toggle.checked); });
+    toggle.addEventListener('change', function () {
+      document.body.classList.toggle('no-portfolio', !toggle.checked);
+      if (pdf) {
+        pdf.href = toggle.checked ? 'pdf/resume.pdf' : 'pdf/resume-only.pdf';
+        pdf.download = toggle.checked ? '송강민_이력서.pdf' : '송강민_이력서_요약.pdf';
+      }
+    });
   }
   var printBtn = document.getElementById('print');
   if (printBtn) printBtn.addEventListener('click', function () { window.print(); });

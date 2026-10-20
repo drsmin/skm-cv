@@ -40,8 +40,9 @@ portfolio.works[]            { title, type, description[] }              개인 
 ## 3. 디자인 · 인쇄 · 폰트 (D-006)
 
 - **화면:** A4 용지 모양의 한 장. 왼쪽 칸에 절 제목(한글 + 영문 부제), 오른쪽에 본문. 720px 이하에서는 한 단.
-- **PDF:** 도구 막대의 「PDF로 저장 · 인쇄」가 `window.print()` 를 부른다. 브라우저 인쇄 창에서
-  「PDF로 저장」을 고르면 된다. 기본 파일 이름은 `document.title`(`송강민_이력서`).
+- **PDF (D-007):** 「PDF 다운로드」는 미리 만든 `resume/pdf/resume.pdf`(포트폴리오 포함)·`resume-only.pdf` 를
+  내려준다. `scripts/build-pdf.mjs` 가 headless Chrome 으로 인쇄 CSS 를 고정 설정으로 찍고, GitHub Actions
+  (`.github/workflows/resume-pdf.yml`)가 master 의 `resume/` 가 바뀔 때마다 다시 만들어 커밋한다. 「인쇄」 버튼은 종이 인쇄용으로 남겼다.
 - **인쇄 CSS:** `@page` A4·여백 14/15/15mm·쪽 번호(`@bottom-right`, Chrome 131+). 9.6pt, 항목은
   쪽 사이에서 쪼개지 않음(`break-inside: avoid`), 포트폴리오는 새 쪽에서 시작. 「포트폴리오 포함」을 끄면 이력서만 인쇄.
 - **폰트:** Pretendard 1.3.9 정적 subset(KS X 1001 한글 + 라틴) 4굵기(400·500·600·700)를 `resume/fonts/pretendard/`
