@@ -66,9 +66,17 @@
       // 가린 번호(010-****-…)는 전화 링크를 만들지 않는다 (D-008)
       items.push(/\*/.test(c.phone) ? el('span', { text: c.phone }) : el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone }));
     }
+    if (c.github) items.push(el('a', { href: c.github, text: c.github.replace(/^https?:\/\//, '').replace(/\/$/, '') }));
     var line = [];
     items.forEach(function (n, i) { if (i) line.push(el('span', { class: 'sep', text: '|' })); line.push(n); });
-    return el('header', { class: 'profile' }, [el('h1', { text: p.name }), el('p', { class: 'contact' }, line)]);
+    return el('header', { class: 'profile' }, [
+      el('h1', { text: p.name }),
+      el('p', { class: 'contact' }, line),
+      // 요약: 첫 줄은 한 문장 자기 규정, 나머지는 근거 — 채용 담당자가 첫 화면에서 읽는 부분
+      p.summary && p.summary.length ? el('div', { class: 'summary' }, p.summary.map(function (t, i) {
+        return el('p', { class: i ? '' : 'lead', text: t });
+      })) : null
+    ]);
   }
 
   function project(pr) {
@@ -115,6 +123,22 @@
     ]));
   }
 
+  // 보유 기술: group 이 같은 것끼리 한 줄 — 「Backend  Java, NodeJS」. 설명은 마우스를 올리면 보인다
+  function skills(list_) {
+    var groups = [], by = {};
+    list_.forEach(function (s) {
+      var g = s.group || '기타';
+      if (!by[g]) { by[g] = []; groups.push(g); }
+      by[g].push(s);
+    });
+    return el('dl', { class: 'skill-groups' }, groups.reduce(function (acc, g) {
+      acc.push(el('dt', { text: g }), el('dd', {}, by[g].map(function (s, i) {
+        return el('span', s.description ? { title: s.description } : {}, [(i ? ', ' : '') + s.name]);
+      })));
+      return acc;
+    }, []));
+  }
+
   function work(w) {
     return el('article', { class: 'entry' }, entryHead(w.title, w.type || '').concat([list('ul', 'items', w.description || [])]));
   }
@@ -130,10 +154,9 @@
       profile(p),
       p.intro && p.intro.length ? section('소개', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
       d.goals && d.goals.length ? section('목표 및 포부', [list('ul', 'items', d.goals)]) : null,
-      d.skills && d.skills.length ? section('보유 기술', [el('ul', { class: 'skills' }, d.skills.map(function (s) {
-        return el('li', {}, [el('b', { text: s.name }), s.description ? ': ' + s.description : '']);
-      }))], 'page-start') : null,
-      d.projects && d.projects.length ? section('프로젝트 이력', projects(d.projects)) : null,
+      d.skills && d.skills.length ? section('보유 기술', [skills(d.skills)]) : null,
+      d.certifications && d.certifications.length ? section('자격', [el('p', { class: 'certs', text: d.certifications.join(' · ') })]) : null,
+      d.projects && d.projects.length ? section('프로젝트 이력', projects(d.projects), 'page-start') : null,
       hasCases ? section('문제 해결 사례', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
       pf.works && pf.works.length ? section('개인 개발', pf.works.map(work), 'portfolio' + (hasCases ? '' : ' portfolio-start')) : null,
       d.updated ? el('footer', { text: '최종 수정 ' + d.updated }) : null

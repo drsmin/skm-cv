@@ -6,71 +6,88 @@
     "intro": [
       "개발은 사람이 하고, 프로젝트는 사람들이 모여서 합니다. 제가 만든 프로그램도 결국 팀원들과의 협업으로 완성되었고, 결과에는 제 개인의 능력보다 팀 전체의 역량과 팀원 한 사람 한 사람의 마음이 고스란히 담긴다는 것을 여러 프로젝트에서 경험했습니다.",
       "한때는 신기술에 집착해 제가 트렌드를 더 잘 안다고 과신했고, 그 때문에 동료를 온전히 신뢰하지 못한 적도 있습니다. 앞장서서 길을 내는 데서 보람을 얻었지만, '우리'를 잊는 순간 누군가는 힘들어지고 팀의 성과도 떨어진다는 것을 그때 배웠습니다.",
-      "그래서 지금은 협업을 가장 중요하게 생각합니다. 제가 잘하는 것과 팀원들이 잘하는 것을 정확히 파악해 역할을 나누고, 프로젝트가 효율적으로 운영되도록 하는 데 힘을 씁니다. 그 바탕은 팀원과의 관계와 신뢰라고 믿습니다. 서로 믿을 수 있어야 솔직하게 이야기할 수 있고, 그래야 협업도 빨라집니다. 또한 팀원이 함께 성장해야 결국 저도 성장하고, 오래 지속될 수 있는 조직이 만들어진다고 믿습니다. 지난 경험으로 리스크를 미리 예측해 차단하고, 남는 시간에는 아키텍처를 다듬는 데 고민을 쏟습니다.",
+      "그래서 지금은 협업을 가장 중요하게 생각합니다. 제가 잘하는 것과 팀원들이 잘하는 것을 정확히 파악해 역할을 나누고, 프로젝트가 효율적으로 운영되도록 하는 데 힘을 씁니다. 그 바탕은 팀원과의 관계와 신뢰라고 믿습니다. 서로 믿을 수 있어야 솔직하게 이야기할 수 있고, 그래야 협업도 빨라집니다. 또한 팀원이 함께 성장해야 결국 저도 성장하고, 오래 지속될 수 있는 조직이 만들어진다고 믿습니다. 제가 겪은 시행착오는 교육과 발표로 나누고, 기존 프레임워크와 공통 소스를 꾸준히 개선합니다. 지난 경험으로 리스크를 미리 예측해 차단하고, 남는 시간에는 아키텍처를 다듬는 데 고민을 쏟습니다.",
       "AI로 개발 환경이 빠르게 바뀌는 지금, 솔직히 두려움도 있습니다. 하지만 변화를 빨리 인정하고 한발 앞서 준비하는 쪽을 택했습니다. Claude 같은 AI 도구를 업무에 적극 활용하고 있으며, 반복 업무를 자동화하는 에이전트를 직접 개발하고, 하네스 엔지니어링으로 AI가 일하는 환경과 규칙을 설계해 효율적이면서도 결과를 예측할 수 있는 바이브 코딩을 실천하고 있습니다. AI와 함께 일하는 개발자이자 사회 구성원으로 계속 준비해 나가겠습니다.",
       "개인적으로는 개발뿐 아니라 인프라 영역까지 두루 익히고 있습니다. 집에 서버를 구축해 그 환경에서 직접 개발하고 운영하는 것이 취미가 되었습니다."
     ],
     "contact": {
       "email": "drs@drs.pe.kr, kangmin.song@gmail.com",
-      "phone": "+82 10-****-7377"
-    }
+      "phone": "+82 10-****-7377",
+      "github": "https://github.com/drsmin"
+    },
+    "summary": [
+      "19년 차 금융권 백엔드 · 플랫폼 개발자",
+      "가입자 300만 명, 수십억 건 규모의 KB국민은행 마이데이터 플랫폼을 설계·개발·운영하며 JDK 21 · Spring Boot 3.5 전환을 설계하고 개발했습니다.",
+      "금융 클라우드 DevOps, 대규모 데이터 이관, 성능 개선 경험에 AI 에이전트와 하네스 엔지니어링을 더해 일합니다."
+    ]
   },
   "skills": [
     {
-      "name": "Java (Spring F/W, Spring Cloud)",
-      "description": "XML 기반 설정부터 Java Config, Spring Cloud Config 구축까지 경험, Spring Bean 에 대한 이해와 주변 기술 활용"
+      "name": "Java 21 (Spring Boot 3, Spring F/W, Spring Cloud)",
+      "description": "XML 기반 설정부터 Java Config, Spring Cloud Config 구축까지 경험, Spring Bean 에 대한 이해와 주변 기술 활용",
+      "group": "Backend"
     },
     {
-      "name": "AI 에이전트 / 하네스 엔지니어링",
-      "description": "Claude 기반 업무 자동화 에이전트 개발, 하네스 엔지니어링으로 효율적이고 예측 가능한 바이브 코딩"
-    },
-    {
-      "name": "AWS",
-      "description": "EC2, S3, ELB, ECache, VPC 등 구축 가능"
-    },
-    {
-      "name": "K8S",
-      "description": "EKS 등의 관리형 Paas 및 일반적인 쿠버네티스 환경 사용"
+      "name": "NodeJS (Express)",
+      "description": "Express 등 잘 알려진 컴포넌트들을 조합하여 웹서비스 개발 및 스크래핑 개발 경험",
+      "group": "Backend"
     },
     {
       "name": "React",
-      "description": "컴포넌트 기반 UI 개발, Hooks 를 이용한 상태 관리"
+      "description": "컴포넌트 기반 UI 개발, Hooks 를 이용한 상태 관리",
+      "group": "Frontend"
     },
     {
       "name": "Next.js",
-      "description": "React 기반 프레임워크로 SSR/SSG 웹서비스 개발"
-    },
-    {
-      "name": "NodeJS",
-      "description": "Express 등 잘 알려진 컴포넌트들을 조합하여 웹서비스 개발 및 스크래핑 개발 경험"
+      "description": "React 기반 프레임워크로 SSR/SSG 웹서비스 개발",
+      "group": "Frontend"
     },
     {
       "name": "VueJS",
-      "description": "KB 금융클라우드 Devops 시스템의 프론트엔드 개발"
+      "description": "KB 금융클라우드 Devops 시스템의 프론트엔드 개발",
+      "group": "Frontend"
     },
     {
       "name": "Flutter",
-      "description": "크로스플랫폼 모바일 앱을 개발하기 위해 사용하는 프레임워크"
+      "description": "크로스플랫폼 모바일 앱을 개발하기 위해 사용하는 프레임워크",
+      "group": "Frontend"
+    },
+    {
+      "name": "AWS (EC2, S3, ELB, ElastiCache, VPC)",
+      "description": "EC2, S3, ELB, ElastiCache, VPC 등 구축 가능",
+      "group": "Infra · Cloud"
+    },
+    {
+      "name": "Kubernetes (EKS)",
+      "description": "EKS 등의 관리형 Paas 및 일반적인 쿠버네티스 환경 사용",
+      "group": "Infra · Cloud"
     },
     {
       "name": "MySQL / MariaDB",
-      "description": "Cloud 환경에서 사용"
+      "description": "Cloud 환경에서 사용",
+      "group": "Data"
     },
     {
       "name": "PostgreSQL",
-      "description": "Cloud 환경에서 사용"
+      "description": "Cloud 환경에서 사용",
+      "group": "Data"
     },
     {
       "name": "Oracle",
-      "description": "프로젝트에서 다수 경험"
+      "description": "프로젝트에서 다수 경험",
+      "group": "Data"
+    },
+    {
+      "name": "Claude 기반 에이전트 개발, MCP, 하네스 엔지니어링",
+      "description": "Claude 기반 업무 자동화 에이전트 개발, 하네스 엔지니어링으로 효율적이고 예측 가능한 바이브 코딩",
+      "group": "AI"
     }
   ],
-  "goals": [
-    "팀 안에서 정보가 막힘없이 흐르도록 합니다. 정기 미팅은 물론 최근 기술 동향과 업무에 도움이 되는 정보를 적극적으로 공유해 팀원들의 공감을 얻는 것을 중요하게 여깁니다.",
-    "제가 겪은 시행착오를 팀원이 반복하지 않도록 교육과 발표로 나눕니다. 이 과정은 팀에 도움이 되는 동시에 저 스스로를 가장 크게 성장시키는 방법이기도 합니다.",
-    "기존 프레임워크와 공통 소스를 분석해 성능과 편의성을 꾸준히 개선하고, 관심 있는 팀원과 함께 새로운 오픈소스와 라이브러리의 PoC 를 진행합니다. 필요하면 다른 팀과도 함께합니다.",
-    "최종 목표는 개발·운영 환경이 늘 최상의 상태를 유지하도록 좋은 방법론과 도구를 도입하고, 그 과정에서 팀원과 관계자의 공감을 얻는 것입니다."
+  "certifications": [
+    "PMP",
+    "정보처리기사"
   ],
+  "goals": [],
   "projects": [
     {
       "title": "KB국민은행 마이데이터 플랫폼 운영",

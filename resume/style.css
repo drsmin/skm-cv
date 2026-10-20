@@ -90,6 +90,9 @@ header.profile h1 { margin: 0; font-size: 2.15em; font-weight: 700; line-height:
 .contact { margin: 8px 0 0; font-size: .9em; font-variant-numeric: tabular-nums; }
 .contact a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .contact .sep { margin: 0 .6em; color: var(--muted); }
+.summary { max-width: 34em; margin: 16px auto 0; }
+.summary p { margin: 0; color: var(--muted); font-size: .95em; }
+.summary p.lead { margin-bottom: 4px; color: var(--text); font-size: 1.08em; font-weight: 600; }
 
 /* ── 절: 제목 + 아래 가로줄 */
 .sec { margin-top: 32px; }
@@ -106,6 +109,11 @@ header.profile h1 { margin: 0; font-size: 2.15em; font-weight: 700; line-height:
 
 .skills { margin: 0; padding: 0 0 0 2px; list-style: none; }
 .skills li { margin-bottom: 6px; }
+/* 분야별 한 줄: 왼쪽 분야 이름, 오른쪽 기술들 */
+.skill-groups { display: grid; grid-template-columns: 7.5em 1fr; gap: 6px 14px; margin: 0; padding-left: 2px; }
+.skill-groups dt { font-weight: 700; }
+.skill-groups dd { margin: 0; }
+.certs { margin: 0; padding-left: 2px; }
 
 /* ── 항목: 굵은 제목 | 기울임 부가 ··· 날짜 / 기울임 둘째 줄 / 글머리표 */
 .entry { margin: 0 0 22px; padding-left: 2px; }
@@ -148,6 +156,8 @@ body.no-portfolio .portfolio { display: none; }
   .contact .sep { margin: 0 .35em; }
   .row { flex-direction: column; gap: 0; }
   .row .date { color: var(--muted); font-size: .85em; }
+  .skill-groups { grid-template-columns: 1fr; gap: 0; }
+  .skill-groups dd { margin-bottom: 8px; }
 }
 
 /* ── 인쇄 · PDF (A4) */
@@ -170,11 +180,13 @@ body.no-portfolio .portfolio { display: none; }
   .entry { margin-bottom: 13pt; break-inside: avoid; }
   .intro p { margin-bottom: 7pt; }
   .skills li { margin-bottom: 3pt; }
+  .skill-groups { gap: 3pt 12pt; }
+  .summary { margin-top: 9pt; }
   ul.items { margin-top: 5pt; }
   ul.items > li { margin-bottom: 2pt; }
   .skills li, .items > li { break-inside: avoid; }
   .older { margin-top: 14pt; break-inside: avoid; } /* 이전 프로젝트 목록은 쪽 사이에서 자르지 않는다 */
   ul.compact li { padding: 1.5pt 0; break-inside: avoid; }
-  /* 쪽 나눔: 1쪽 소개·목표 → 기술·프로젝트 이력 → 포트폴리오 */
+  /* 쪽 나눔: 1쪽 요약·소개·기술 → 프로젝트 이력 → 포트폴리오 */
   .sec.page-start, .sec.portfolio-start { break-before: page; margin-top: 0; }
 }
