@@ -52,3 +52,4 @@ portfolio.works[]            { title, type, description[] }              개인 
 - **폰트:** Pretendard 1.3.9 정적 subset(KS X 1001 한글 + 라틴) 4굵기(400·500·600·700)를 `resume/fonts/pretendard/`
   에 둔다(OFL, 약 1MB). 외부 CDN 없이 동작하고, 정적 폰트라 PDF 에 CID TrueType 으로 박힌다(가변 폰트는 Type 3 로 박혀 품질이 떨어진다).
   `data.json` 에 KS X 1001 밖 한글을 쓰면 그 글자만 대체 폰트로 나온다.
+- **파비콘:** `resume/favicon.svg`(검은 둥근 사각형 + Pretendard Bold 「송」 윤곽선) · `favicon-32.png` · `apple-touch-icon.png`. 예전 `assets/images/logo5.png` 는 원본 페이지(`cv.html`)만 쓴다.
