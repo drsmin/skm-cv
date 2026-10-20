@@ -123,7 +123,7 @@
       }, function () { return { title: '', type: '', start: null, end: null, summary: '', role: '', tech: [] }; }, '프로젝트')]),
       section('문제 해결 사례', [listEditor(pf.troubleshooting, function (c) {
         return [
-          field('제목', 'text', c, 'title'),
+          el('div', { class: 'row' }, [field('제목', 'text', c, 'title', 'grow'), field('어느 프로젝트에서', 'text', c, 'project', 'half')]),
           field('문제 (한 줄에 하나)', 'lines', c, 'problem'),
           field('원인 (한 줄에 하나)', 'lines', c, 'cause'),
           field('해결 (한 줄에 하나)', 'lines', c, 'solution')

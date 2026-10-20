@@ -116,7 +116,7 @@
 
   function troubleshooting(c, i) {
     var rows = [['문제', c.problem], ['원인', c.cause], ['해결', c.solution]];
-    return el('article', { class: 'entry' }, entryHead((i + 1) + '. ' + c.title).concat([
+    return el('article', { class: 'entry' }, entryHead((i + 1) + '. ' + c.title, c.project || '').concat([
       el('ul', { class: 'items' }, rows.filter(function (r) { return r[1] && r[1].length; }).map(function (r) {
         return el('li', {}, [el('b', { text: r[0] }), list('ul', 'sub-items', r[1])]);
       }))
