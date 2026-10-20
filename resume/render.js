@@ -58,7 +58,10 @@
     var c = p.contact || {};
     var items = [];
     if (p.nameEn) items.push(el('span', { text: p.nameEn }));
-    if (c.email) items.push(el('a', { href: 'mailto:' + c.email, text: c.email }));
+    // 이메일은 쉼표로 여러 개 적을 수 있다
+    (c.email || '').split(',').map(function (m) { return m.trim(); }).filter(Boolean).forEach(function (m) {
+      items.push(el('a', { href: 'mailto:' + m, text: m }));
+    });
     if (c.phone) {
       // 가린 번호(010-****-…)는 전화 링크를 만들지 않는다 (D-008)
       items.push(/\*/.test(c.phone) ? el('span', { text: c.phone }) : el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone }));

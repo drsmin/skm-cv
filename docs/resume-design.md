@@ -25,7 +25,7 @@ updated            "YYYY-MM-DD"            마지막 수정일
 profile.name       "송강민"
 profile.nameEn     "Kang-min Song"
 profile.intro      [문단, …]               자기소개
-profile.contact    { email, phone }
+profile.contact    { email(쉼표로 여러 개), phone }
 skills[]           { name, description }   보유 기술 / 플랫폼
 goals[]            문장                      목표 및 포부 (순서 = 번호)
 projects[]         { title, type, start, end, summary, role, tech[] }

@@ -96,7 +96,7 @@
     [
       section('프로필', [
         el('div', { class: 'row' }, [field('이름', 'text', p, 'name', 'half'), field('영문 이름', 'text', p, 'nameEn', 'half')]),
-        el('div', { class: 'row' }, [field('이메일', 'text', p.contact, 'email', 'half'), field('전화', 'text', p.contact, 'phone', 'half')]),
+        el('div', { class: 'row' }, [field('이메일 (여러 개는 쉼표로)', 'text', p.contact, 'email', 'half'), field('전화', 'text', p.contact, 'phone', 'half')]),
         field('소개 (빈 줄로 문단 구분)', 'paras', p, 'intro')
       ]),
       section('보유 기술 / 플랫폼', [listEditor(data.skills, function (s) {
