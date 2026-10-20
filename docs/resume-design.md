@@ -39,11 +39,13 @@ portfolio.works[]            { title, type, description[] }              개인 
 
 ## 3. 디자인 · 인쇄 · 폰트 (D-006)
 
-- **화면:** A4 용지 모양의 한 장. 왼쪽 칸에 절 제목(한글 + 영문 부제), 오른쪽에 본문. 720px 이하에서는 한 단.
+- **화면 (2026-10-20 개편):** A4 용지 모양의 한 장. 그라데이션 머리 띠(영문 이름·주요 기술 6개·연락처·요약 지표 —
+  경력 연수·프로젝트 수·기술 수는 `data.json` 에서 계산), 절마다 영문 소제목, 기술은 카드, 프로젝트는 기간·근무 기간이 붙은
+  세로 타임라인(진행 중은 강조), 문제 해결 사례는 문제·원인·해결 색 라벨 카드, 개인 개발은 카드 격자. 다크·720px 이하 한 단.
 - **PDF (D-007):** 「PDF 다운로드」는 미리 만든 `resume/pdf/resume.pdf`(포트폴리오 포함)·`resume-only.pdf` 를
   내려준다. `scripts/build-pdf.mjs` 가 headless Chrome 으로 인쇄 CSS 를 고정 설정으로 찍고, GitHub Actions
   (`.github/workflows/resume-pdf.yml`)가 master 의 `resume/` 가 바뀔 때마다 다시 만들어 커밋한다. 「인쇄」 버튼은 종이 인쇄용으로 남겼다.
-- **인쇄 CSS:** `@page` A4·여백 14/15/15mm·쪽 번호(`@bottom-right`, Chrome 131+). 9.6pt, 항목은
+- **인쇄 CSS:** `@page` A4·여백 13/14/14mm·쪽 번호(`@bottom-right`, Chrome 131+). 9.3pt, 머리 띠는 둥근 상자(여백 밖은 그려지지 않음), 항목은
   쪽 사이에서 쪼개지 않음(`break-inside: avoid`), 포트폴리오는 새 쪽에서 시작. 「포트폴리오 포함」을 끄면 이력서만 인쇄.
 - **폰트:** Pretendard 1.3.9 정적 subset(KS X 1001 한글 + 라틴) 4굵기(400·500·600·700)를 `resume/fonts/pretendard/`
   에 둔다(OFL, 약 1MB). 외부 CDN 없이 동작하고, 정적 폰트라 PDF 에 CID TrueType 으로 박힌다(가변 폰트는 Type 3 로 박혀 품질이 떨어진다).
