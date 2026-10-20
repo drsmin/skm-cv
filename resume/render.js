@@ -19,18 +19,19 @@
   // "2019-08" → "2019.08", null → "현재"
   function ym(v) { return v ? v.replace('-', '.') : '현재'; }
 
-  function section(title, body) {
-    return el('section', {}, [el('h2', { text: title })].concat(body));
+  // 왼쪽 칸에 제목(한글 + 영문 부제), 오른쪽 칸에 본문
+  function section(title, en, body, cls) {
+    var h2 = el('h2', { text: title }, [el('small', { text: en })]);
+    return el('section', cls ? { class: cls } : {}, [h2, el('div', { class: 'body' }, body)]);
   }
 
   function profile(p) {
     var c = p.contact || {};
     var contacts = [];
-    if (c.email) contacts.push(el('li', {}, [el('a', { href: 'mailto:' + c.email, text: c.email })]));
-    if (c.phone) contacts.push(el('li', {}, [el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone })]));
+    if (c.email) contacts.push(el('li', {}, [el('b', { text: 'Email' }), el('a', { href: 'mailto:' + c.email, text: c.email })]));
+    if (c.phone) contacts.push(el('li', {}, [el('b', { text: 'Phone' }), el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone })]));
     return el('header', { class: 'profile' }, [
-      el('h1', { text: p.name }),
-      p.nameEn ? el('p', { class: 'en', text: p.nameEn }) : null,
+      el('div', {}, [el('h1', { text: p.name }), p.nameEn ? el('p', { class: 'en', text: p.nameEn }) : null]),
       el('ul', { class: 'contact' }, contacts)
     ]);
   }
@@ -65,22 +66,30 @@
     var app = document.getElementById('app');
     var p = d.profile || {};
     var pf = d.portfolio || {};
-    document.title = (p.name || '') + ' 이력서';
+    document.title = (p.name || '') + '_이력서'; // PDF 로 저장할 때 기본 파일 이름이 된다
     app.textContent = '';
     [
       profile(p),
-      p.intro && p.intro.length ? section('소개', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
-      d.skills && d.skills.length ? section('보유 기술 / 플랫폼', [el('dl', { class: 'skills' }, d.skills.reduce(function (acc, s) {
+      p.intro && p.intro.length ? section('소개', 'Profile', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
+      d.skills && d.skills.length ? section('보유 기술', 'Skills', [el('dl', { class: 'skills' }, d.skills.reduce(function (acc, s) {
         acc.push(el('div', {}, [el('dt', { text: s.name }), el('dd', { text: s.description || '' })]));
         return acc;
       }, []))]) : null,
-      d.goals && d.goals.length ? section('목표 및 포부', [list('ol', 'goals', d.goals)]) : null,
-      d.projects && d.projects.length ? section('프로젝트 이력', d.projects.map(project)) : null,
-      pf.troubleshooting && pf.troubleshooting.length ? section('문제 해결 사례', pf.troubleshooting.map(troubleshooting)) : null,
-      pf.works && pf.works.length ? section('개인 개발', pf.works.map(work)) : null,
+      d.goals && d.goals.length ? section('목표 및 포부', 'Goals', [list('ol', 'goals', d.goals)]) : null,
+      d.projects && d.projects.length ? section('프로젝트 이력', 'Projects', d.projects.map(project)) : null,
+      pf.troubleshooting && pf.troubleshooting.length ? section('문제 해결 사례', 'Problem Solving', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
+      pf.works && pf.works.length ? section('개인 개발', 'Side Projects', pf.works.map(work), 'portfolio' + (pf.troubleshooting && pf.troubleshooting.length ? '' : ' portfolio-start')) : null,
       d.updated ? el('footer', { text: '최종 수정 ' + d.updated }) : null
     ].forEach(function (n) { if (n) app.appendChild(n); });
   }
+
+  // 도구 막대: 인쇄(브라우저의 「PDF로 저장」), 포트폴리오 포함 여부
+  var toggle = document.getElementById('with-portfolio');
+  if (toggle) {
+    toggle.addEventListener('change', function () { document.body.classList.toggle('no-portfolio', !toggle.checked); });
+  }
+  var printBtn = document.getElementById('print');
+  if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
 
   fetch('data.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
