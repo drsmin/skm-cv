@@ -126,11 +126,11 @@
     [
       profile(p),
       p.intro && p.intro.length ? section('소개', [el('div', { class: 'intro' }, p.intro.map(function (t) { return el('p', { text: t }); }))]) : null,
+      d.goals && d.goals.length ? section('목표 및 포부', [list('ul', 'items', d.goals)]) : null,
       d.skills && d.skills.length ? section('보유 기술', [el('ul', { class: 'skills' }, d.skills.map(function (s) {
         return el('li', {}, [el('b', { text: s.name }), s.description ? ': ' + s.description : '']);
-      }))]) : null,
+      }))], 'page-start') : null,
       d.projects && d.projects.length ? section('프로젝트 이력', projects(d.projects)) : null,
-      d.goals && d.goals.length ? section('목표 및 포부', [list('ul', 'items', d.goals)]) : null,
       hasCases ? section('문제 해결 사례', pf.troubleshooting.map(troubleshooting), 'portfolio portfolio-start') : null,
       pf.works && pf.works.length ? section('개인 개발', pf.works.map(work), 'portfolio' + (hasCases ? '' : ' portfolio-start')) : null,
       d.updated ? el('footer', { text: '최종 수정 ' + d.updated }) : null

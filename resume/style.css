@@ -173,8 +173,8 @@ body.no-portfolio .portfolio { display: none; }
   ul.items { margin-top: 5pt; }
   ul.items > li { margin-bottom: 2pt; }
   .skills li, .items > li { break-inside: avoid; }
-  .older { margin-top: 14pt; }
+  .older { margin-top: 14pt; break-inside: avoid; } /* 이전 프로젝트 목록은 쪽 사이에서 자르지 않는다 */
   ul.compact li { padding: 1.5pt 0; break-inside: avoid; }
-  /* 이력서와 포트폴리오를 나눈다 — 포트폴리오는 새 쪽에서 시작 */
-  .sec.portfolio-start { break-before: page; margin-top: 0; }
+  /* 쪽 나눔: 1쪽 소개·목표 → 기술·프로젝트 이력 → 포트폴리오 */
+  .sec.page-start, .sec.portfolio-start { break-before: page; margin-top: 0; }
 }
