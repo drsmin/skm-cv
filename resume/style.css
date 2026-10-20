@@ -1,101 +1,181 @@
+/* 이력서 보기 페이지 — 화면은 A4 용지처럼, 인쇄·PDF 는 A4 에 맞춘다.
+   폰트는 저장소에 둔 Pretendard 정적 subset(OFL, fonts/pretendard/) — 외부 CDN 없이 PDF 에도 그대로 박힌다. */
+@import url("fonts/pretendard/pretendard.css");
+
 :root {
-  --bg: #f6f7f9;
+  --font: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --desk: #e9ecf1;
   --paper: #ffffff;
-  --text: #1d2330;
-  --muted: #5f6b7a;
-  --line: #e2e6ec;
-  --accent: #2f6fde;
-  --chip: #eef3fc;
-  --chip-text: #2a4f99;
+  --text: #1b1f27;
+  --muted: #5d6675;
+  --line: #dfe3ea;
+  --accent: #1f4e9c;
+  --chip: #eef2f9;
+  --chip-text: #2b4a80;
+  --label-w: 112px;
 }
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
   :root {
-    --bg: #12151b;
-    --paper: #1a1f27;
+    --desk: #0f1217;
+    --paper: #191d24;
     --text: #e6e9ee;
-    --muted: #9aa5b4;
+    --muted: #9aa4b2;
     --line: #2c333e;
-    --accent: #6ea0ff;
-    --chip: #233149;
-    --chip-text: #b9cdf5;
+    --accent: #7fa8f5;
+    --chip: #222c3d;
+    --chip-text: #b9cbef;
   }
 }
 
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--bg);
+  background: var(--desk);
   color: var(--text);
-  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  line-height: 1.65;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
   word-break: keep-all;
   overflow-wrap: anywhere;
-}
-.page {
-  max-width: 880px;
-  margin: 32px auto;
-  padding: 40px 48px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  font-feature-settings: "tnum" 0;
 }
 .muted { color: var(--muted); }
 
-header.profile { border-bottom: 2px solid var(--text); padding-bottom: 20px; margin-bottom: 8px; }
-header.profile h1 { margin: 0; font-size: 2rem; letter-spacing: .02em; }
-header.profile .en { margin: 0 0 12px; color: var(--muted); font-size: 1.05rem; }
-.contact { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 0; padding: 0; list-style: none; }
-.contact a { color: var(--accent); text-decoration: none; }
+/* ── 용지 */
+.page {
+  width: 210mm;
+  max-width: 100%;
+  min-height: 297mm;
+  margin: 24px auto 48px;
+  padding: 18mm 17mm;
+  background: var(--paper);
+  box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 8px 28px rgba(0,0,0,.08);
+}
 
-section { margin-top: 32px; }
-section > h2 {
-  font-size: 1.15rem;
-  margin: 0 0 14px;
-  padding-bottom: 6px;
+/* ── 도구 막대 (화면 전용) */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 10px 16px;
+  background: color-mix(in srgb, var(--desk) 88%, transparent);
+  backdrop-filter: blur(6px);
+  font-size: 14px;
+}
+.toolbar button, .toolbar a.btn {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.toolbar a.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
+.toolbar label { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); cursor: pointer; }
+
+/* ── 머리 */
+header.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--accent);
+}
+header.profile h1 { margin: 0; font-size: 2.1rem; font-weight: 700; line-height: 1.15; letter-spacing: 0.04em; }
+header.profile .en { margin: 2px 0 0; color: var(--muted); font-size: 1rem; font-weight: 500; letter-spacing: 0.02em; }
+.contact { margin: 0; padding: 0; list-style: none; text-align: right; font-size: .93rem; font-variant-numeric: tabular-nums; }
+.contact li { line-height: 1.7; }
+.contact a { color: var(--text); text-decoration: none; }
+.contact b { display: inline-block; min-width: 3.2em; color: var(--muted); font-weight: 600; font-size: .82em; text-align: left; }
+
+/* ── 절: 왼쪽 제목 칸 + 오른쪽 본문 */
+section {
+  display: grid;
+  grid-template-columns: var(--label-w) 1fr;
+  gap: 0 20px;
+  padding: 18px 0 4px;
   border-bottom: 1px solid var(--line);
 }
-.intro p { margin: 0 0 10px; }
+section:last-of-type { border-bottom: 0; }
+section > h2 { margin: 2px 0 10px; font-size: .98rem; font-weight: 700; color: var(--accent); line-height: 1.35; }
+section > h2 small { display: block; margin-top: 2px; font-size: .7rem; font-weight: 600; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.body { min-width: 0; padding-bottom: 10px; }
 
-.skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px 24px; margin: 0; }
-.skills dt { font-weight: 700; }
-.skills dd { margin: 2px 0 0; color: var(--muted); font-size: .93rem; }
+.intro p { margin: 0 0 8px; }
 
-ol.goals { margin: 0; padding-left: 1.4em; }
-ol.goals li { margin-bottom: 8px; }
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin: 0; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 1px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.5; }
 
-.item { padding: 14px 0; border-bottom: 1px solid var(--line); }
-.item:last-child { border-bottom: 0; }
-.item-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
-.item h3 { margin: 0; font-size: 1.02rem; }
-.period { color: var(--muted); font-size: .9rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.badge { display: inline-block; margin-left: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 8px; vertical-align: 2px; }
-.item p { margin: 6px 0 0; }
-.role { font-size: .93rem; }
-.role b { color: var(--muted); font-weight: 600; margin-right: 6px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
-.chips li { background: var(--chip); color: var(--chip-text); border-radius: 6px; padding: 1px 8px; font-size: .82rem; }
+ol.goals { margin: 0; padding-left: 1.3em; }
+ol.goals li { margin-bottom: 6px; padding-left: 2px; }
+ol.goals li::marker { color: var(--accent); font-weight: 700; }
 
-.case { display: grid; grid-template-columns: 56px 1fr; gap: 4px 12px; margin-top: 8px; font-size: .95rem; }
-.case dt { color: var(--muted); font-weight: 600; }
+/* ── 항목 (프로젝트·사례·개인 개발) */
+.item { padding: 0 0 12px; margin-bottom: 12px; border-bottom: 1px dashed var(--line); }
+.item:last-child { border-bottom: 0; margin-bottom: 0; }
+.item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 2px 12px; flex-wrap: wrap; }
+.item h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+.badge { display: inline-block; margin-left: 6px; padding: 0 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .72rem; font-weight: 500; vertical-align: 2px; white-space: nowrap; }
+.period { color: var(--muted); font-size: .86rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.item p { margin: 4px 0 0; }
+.role { font-size: .92rem; }
+.role b { margin-right: 6px; color: var(--muted); font-weight: 600; font-size: .9em; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 0; padding: 0; list-style: none; }
+.chips li { padding: 0 7px; border-radius: 4px; background: var(--chip); color: var(--chip-text); font-size: .76rem; line-height: 1.75; }
+
+.case { display: grid; grid-template-columns: 2.6em 1fr; gap: 3px 8px; margin: 6px 0 0; font-size: .93rem; }
+.case dt { color: var(--accent); font-weight: 600; }
 .case dd { margin: 0; }
-.case ul, .item ul.desc { margin: 0; padding-left: 1.1em; }
-.item ul.desc { margin-top: 6px; }
+.case ul, ul.desc { margin: 0; padding-left: 1.05em; }
+ul.desc { margin-top: 4px; font-size: .95rem; }
 
-footer { margin-top: 32px; color: var(--muted); font-size: .85rem; text-align: right; }
+footer { margin-top: 16px; color: var(--muted); font-size: .78rem; text-align: right; }
 
-@media (max-width: 640px) {
-  .page { margin: 0; padding: 24px 16px; border: 0; border-radius: 0; }
-  header.profile h1 { font-size: 1.6rem; }
-  .case { grid-template-columns: 1fr; }
-  .case dd { margin-bottom: 6px; }
+/* 포트폴리오 끄기 (도구 막대) */
+body.no-portfolio .portfolio { display: none; }
+
+/* ── 좁은 화면 */
+@media screen and (max-width: 720px) {
+  body { font-size: 15px; }
+  .page { width: auto; min-height: 0; margin: 0; padding: 24px 16px 32px; box-shadow: none; }
+  header.profile { align-items: flex-start; flex-direction: column; }
+  .contact { text-align: left; }
+  section { grid-template-columns: 1fr; }
+  section > h2 small { display: inline; margin-left: 6px; }
+  .skills { grid-template-columns: 1fr; }
 }
 
+/* ── 인쇄 · PDF (A4) */
+@page {
+  size: A4;
+  margin: 14mm 15mm 15mm;
+  @bottom-right { content: counter(page) " / " counter(pages); font-family: var(--font); font-size: 8pt; color: #888; }
+}
 @media print {
-  :root { --bg: #fff; --paper: #fff; --text: #000; --muted: #444; --line: #ccc; --chip: #fff; --chip-text: #000; }
-  body { font-size: 10.5pt; }
-  .page { margin: 0; padding: 0; border: 0; max-width: none; }
-  .chips li { border: 1px solid #bbb; }
-  .item { break-inside: avoid; }
+  :root { --paper: #fff; --text: #111; --muted: #555; --line: #d6d9df; --chip: #f0f2f6; --chip-text: #2b3b5c; --label-w: 26mm; }
+  html, body { background: #fff; }
+  body { font-size: 9.6pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .toolbar, footer { display: none !important; }
+  .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+  header.profile h1 { font-size: 22pt; }
+  a { color: inherit; text-decoration: none; }
+  section { padding-top: 10pt; break-inside: auto; }
   section > h2 { break-after: avoid; }
-  footer { display: none; }
+  .item, .skills > div, ol.goals li { break-inside: avoid; }
+  .item-head { break-after: avoid; }
+  /* 이력서와 포트폴리오를 나눈다 — 포트폴리오는 새 쪽에서 시작 */
+  section.portfolio-start { break-before: page; border-top: 2px solid var(--accent); }
 }
