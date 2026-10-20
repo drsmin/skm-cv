@@ -32,7 +32,7 @@ certifications[]   이름                      자격
 goals[]            문장                      목표 및 포부 (비우면 절이 안 보임)
 projects[]         { title, type, start, end, summary, role, tech[] }
                    start·end 는 "YYYY-MM", end 가 null 이면 「현재」. 최신이 위.
-portfolio.troubleshooting[]  { title, project, problem[], cause[], solution[], result[] }   문제 → 원인 → 해결 → 결과
+portfolio.troubleshooting[]  { title, project, problem[], cause[], solution[], result[] }   문제 → 원인 → 해결 → 결과 · 글 안 `**…**` 는 굵게(숫자·성과만)
 portfolio.works[]            { title, type, description[] }              개인 개발
 ```
 

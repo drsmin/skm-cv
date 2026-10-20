@@ -17,8 +17,15 @@
     return node;
   }
 
+  // 글 안의 **…** 는 굵게 — 숫자·성과만 짚는 데 쓴다 (항목당 한두 군데)
+  function rich(t) {
+    return String(t || '').split(/\*\*(.+?)\*\*/).map(function (part, i) {
+      return i % 2 ? el('strong', { text: part }) : part;
+    }).filter(function (part) { return part !== ''; });
+  }
+
   function list(tag, cls, items) {
-    return el(tag, cls ? { class: cls } : {}, items.map(function (t) { return el('li', { text: t }); }));
+    return el(tag, cls ? { class: cls } : {}, items.map(function (t) { return el('li', {}, rich(t)); }));
   }
 
   // "2019-08" → "2019.08", null → "현재"
@@ -74,16 +81,16 @@
       el('p', { class: 'contact' }, line),
       // 요약: 첫 줄은 한 문장 자기 규정, 나머지는 근거 — 채용 담당자가 첫 화면에서 읽는 부분
       p.summary && p.summary.length ? el('div', { class: 'summary' }, p.summary.map(function (t, i) {
-        return el('p', { class: i ? '' : 'lead', text: t });
+        return el('p', { class: i ? '' : 'lead' }, rich(t));
       })) : null
     ]);
   }
 
   function project(pr) {
     var bullets = [];
-    if (pr.summary) bullets.push(el('li', { text: pr.summary }));
+    if (pr.summary) bullets.push(el('li', {}, rich(pr.summary)));
     // 역할이 유형과 같으면(예: 「| AA」 + 「역할: AA」) 머리줄에 이미 있으니 다시 적지 않는다
-    if (pr.role && pr.role !== pr.type) bullets.push(el('li', {}, [el('b', { text: '역할: ' }), pr.role]));
+    if (pr.role && pr.role !== pr.type) bullets.push(el('li', {}, [el('b', { text: '역할: ' })].concat(rich(pr.role))));
     return el('article', { class: 'entry' + (pr.end ? '' : ' current') }, entryHead(
       pr.title,
       pr.type || '',

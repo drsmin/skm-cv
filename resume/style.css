@@ -127,6 +127,8 @@ header.profile h1 { margin: 0; font-size: 2.15em; font-weight: 700; line-height:
 .row.sub em:last-child:not(:first-child) { flex: none; white-space: nowrap; }
 /* Pretendard 에는 이탤릭이 없어 한글이 기울어지면 어색하다 — 원본의 기울임은 회색으로 대신한다 */
 em { font-style: normal; color: var(--muted); }
+/* 데이터의 **…** 강조 — 회색 문장 안에서도 본문색으로 */
+strong { font-weight: 700; color: var(--text); }
 
 ul.items { margin: 8px 0 0; padding-left: 1.35em; }
 ul.items > li { margin-bottom: 4px; }
