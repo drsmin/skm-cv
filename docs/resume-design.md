@@ -46,7 +46,7 @@ portfolio.works[]            { title, type, description[] }              개인 
   내려준다. `scripts/build-pdf.mjs` 가 headless Chrome 으로 인쇄 CSS 를 고정 설정으로 찍고, GitHub Actions
   (`.github/workflows/resume-pdf.yml`)가 master 의 `resume/` 가 바뀔 때마다 다시 만들어 커밋한다. 「인쇄」 버튼은 종이 인쇄용으로 남겼다.
 - **인쇄 CSS:** `@page` A4·여백 16/17/16mm·쪽 번호(`@bottom-right`, Chrome 131+). 10pt, 항목은
-  쪽 사이에서 쪼개지 않음(`break-inside: avoid`), 포트폴리오는 새 쪽에서 시작. 「포트폴리오 포함」을 끄면 이력서만 인쇄.
+  쪽 사이에서 쪼개지 않음(`break-inside: avoid`), 쪽 구성은 1쪽 소개·목표, 2쪽부터 보유 기술·프로젝트 이력, 포트폴리오는 새 쪽에서 시작. 「이전 프로젝트」 목록은 쪽 사이에서 자르지 않음. 「포트폴리오 포함」을 끄면 이력서만 인쇄.
 - **폰트:** Pretendard 1.3.9 정적 subset(KS X 1001 한글 + 라틴) 4굵기(400·500·600·700)를 `resume/fonts/pretendard/`
   에 둔다(OFL, 약 1MB). 외부 CDN 없이 동작하고, 정적 폰트라 PDF 에 CID TrueType 으로 박힌다(가변 폰트는 Type 3 로 박혀 품질이 떨어진다).
   `data.json` 에 KS X 1001 밖 한글을 쓰면 그 글자만 대체 폰트로 나온다.
