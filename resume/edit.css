@@ -1,0 +1,46 @@
+/* 편집 페이지 전용 — 색은 style.css 의 변수를 쓴다 */
+.editor { max-width: 960px; }
+.bar { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--text); padding-bottom: 12px; }
+.bar h1 { margin: 0; font-size: 1.6rem; }
+.bar a { color: var(--accent); }
+
+.save-box { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; }
+.save-box h2 { border: 0; margin-bottom: 8px; padding: 0; }
+.hint { color: var(--muted); font-size: .88rem; margin: 6px 0 12px; }
+
+.row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-end; }
+.grow { flex: 1 1 240px; }
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; min-width: 0; }
+.field > span { font-size: .85rem; font-weight: 600; color: var(--muted); }
+.field.half { flex: 1 1 200px; }
+.field.month { flex: 0 1 170px; }
+
+input, textarea, button {
+  font: inherit;
+  color: var(--text);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+button { cursor: pointer; padding: 6px 12px; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button.danger { color: #c4423b; }
+button:disabled { opacity: .5; cursor: default; }
+.status { font-size: .9rem; color: var(--muted); }
+.status.ok { color: #23864a; }
+.status.err { color: #c4423b; }
+
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px 4px; margin-bottom: 10px; }
+.card-tools { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 8px; }
+.card-tools .no { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.card-tools .btns { display: flex; gap: 4px; }
+.card-tools button { padding: 2px 9px; font-size: .85rem; }
+.add { margin: 2px 0 8px; }
+
+@media (max-width: 640px) {
+  .field.month { flex: 1 1 140px; }
+}
