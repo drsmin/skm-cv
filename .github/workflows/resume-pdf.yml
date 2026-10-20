@@ -1,0 +1,42 @@
+# 이력서 내용·디자인이 바뀌면 PDF 를 다시 만들어 resume/pdf/ 에 커밋한다 (D-007).
+name: resume-pdf
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'resume/**'
+      - 'scripts/build-pdf.mjs'
+      - '.github/workflows/resume-pdf.yml'
+      - '!resume/pdf/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resume-pdf
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+      - name: Build PDF
+        run: node scripts/build-pdf.mjs
+      - name: Commit PDF
+        run: |
+          git add resume/pdf
+          if git diff --cached --quiet; then echo "PDF 변화 없음"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "이력서 PDF 다시 만듦 (${GITHUB_SHA::7})"
+          git push
