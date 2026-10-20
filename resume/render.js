@@ -82,7 +82,8 @@
   function project(pr) {
     var bullets = [];
     if (pr.summary) bullets.push(el('li', { text: pr.summary }));
-    if (pr.role) bullets.push(el('li', {}, [el('b', { text: '역할: ' }), pr.role]));
+    // 역할이 유형과 같으면(예: 「| AA」 + 「역할: AA」) 머리줄에 이미 있으니 다시 적지 않는다
+    if (pr.role && pr.role !== pr.type) bullets.push(el('li', {}, [el('b', { text: '역할: ' }), pr.role]));
     return el('article', { class: 'entry' + (pr.end ? '' : ' current') }, entryHead(
       pr.title,
       pr.type || '',
@@ -115,7 +116,7 @@
   }
 
   function troubleshooting(c, i) {
-    var rows = [['문제', c.problem], ['원인', c.cause], ['해결', c.solution]];
+    var rows = [['문제', c.problem], ['원인', c.cause], ['해결', c.solution], ['결과', c.result]];
     return el('article', { class: 'entry' }, entryHead((i + 1) + '. ' + c.title, c.project || '').concat([
       el('ul', { class: 'items' }, rows.filter(function (r) { return r[1] && r[1].length; }).map(function (r) {
         return el('li', {}, [el('b', { text: r[0] }), list('ul', 'sub-items', r[1])]);

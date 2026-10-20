@@ -126,9 +126,10 @@
           el('div', { class: 'row' }, [field('제목', 'text', c, 'title', 'grow'), field('어느 프로젝트에서', 'text', c, 'project', 'half')]),
           field('문제 (한 줄에 하나)', 'lines', c, 'problem'),
           field('원인 (한 줄에 하나)', 'lines', c, 'cause'),
-          field('해결 (한 줄에 하나)', 'lines', c, 'solution')
+          field('해결 (한 줄에 하나)', 'lines', c, 'solution'),
+          field('결과 (한 줄에 하나, 숫자로)', 'lines', c, 'result')
         ];
-      }, function () { return { title: '', problem: [], cause: [], solution: [] }; }, '사례')]),
+      }, function () { return { title: '', problem: [], cause: [], solution: [], result: [] }; }, '사례')]),
       section('개인 개발', [listEditor(pf.works, function (w) {
         return [
           el('div', { class: 'row' }, [field('제목', 'text', w, 'title', 'grow'), field('구분', 'text', w, 'type', 'month')]),
