@@ -12,6 +12,7 @@
 
 | D | 결정 | 상태 |
 | --- | --- | --- |
+| D-008 | 공개 이력서의 휴대폰 번호는 가운데를 가린다 (원본 cv.html 포함) | 유효 |
 | D-007 | PDF 는 GitHub Actions 가 headless Chrome 으로 미리 만들어 resume/pdf/ 에 커밋 | 유효 |
 | D-006 | PDF 는 브라우저 인쇄 + A4 인쇄 CSS, 폰트는 Pretendard 정적 subset 을 저장소에 | 유효 |
 | D-005 | 편집 페이지는 GitHub API 로 바로 커밋, 토큰은 저장하지 않는다 | 유효 |

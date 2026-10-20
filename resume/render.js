@@ -29,7 +29,11 @@
     var c = p.contact || {};
     var contacts = [];
     if (c.email) contacts.push(el('li', {}, [el('b', { text: 'Email' }), el('a', { href: 'mailto:' + c.email, text: c.email })]));
-    if (c.phone) contacts.push(el('li', {}, [el('b', { text: 'Phone' }), el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone })]));
+    if (c.phone) {
+      // 가린 번호(010-****-…)는 전화 링크를 만들지 않는다 (D-008)
+      var phone = /\*/.test(c.phone) ? el('span', { text: c.phone }) : el('a', { href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), text: c.phone });
+      contacts.push(el('li', {}, [el('b', { text: 'Phone' }), phone]));
+    }
     return el('header', { class: 'profile' }, [
       el('div', {}, [el('h1', { text: p.name }), p.nameEn ? el('p', { class: 'en', text: p.nameEn }) : null]),
       el('ul', { class: 'contact' }, contacts)
