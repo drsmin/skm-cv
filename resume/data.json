@@ -73,6 +73,24 @@
   ],
   "projects": [
     {
+      "title": "KB국민은행 마이데이터 플랫폼 운영",
+      "type": "개발 / 운영",
+      "start": "2022-01",
+      "end": null,
+      "summary": "금융마이데이터 사업자, 공공마이데이터 이용기관 플랫폼 운영",
+      "role": "분석 설계 / 개발 / 운영",
+      "tech": [
+        "Java",
+        "Spring",
+        "MySQL",
+        "AWS",
+        "K8S",
+        "Claude",
+        "ReactJs",
+        "Next.js"
+      ]
+    },
+    {
       "title": "KB 금융클라우드 Devops 구축 / 운영",
       "type": "개발 / 운영",
       "start": "2019-08",
